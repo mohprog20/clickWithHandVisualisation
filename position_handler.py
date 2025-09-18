@@ -1,7 +1,7 @@
 import pyautogui as pag
 import time
 import cv2
-
+pag.FAILSAFE = False
 class PositionHandler:
     def __init__(self):
         self.position = (0, 0)
@@ -29,5 +29,10 @@ class PositionHandler:
                 position[1] * self.screen_size[1] / self.cam_height)
     def get_distance(self,point1,point2):
         return ((point2[0]-point1[0])**2+(point2[1]-point1[1])**2)**0.5
+
+    def position_offset(self,position,offset_percentage=0.1):
+        offset_x=offset_percentage*self.screen_size[0]
+        offset_y=offset_percentage*self.screen_size[1]
+        return (position[0]+offset_x,position[1]+offset_y)
 #pos=PositionHandler()
 #print(pos.get_refernce_position([100,100]))
