@@ -3,12 +3,12 @@ import hand_tracking_base as htb
 import cv2
 import position_handler as ph
 
-clicker = clicker.Clicker(cooldown=1.0)
+clicker = clicker.Clicker(cooldown=0.5)
 
 pos_handler = ph.PositionHandler()
 distance_percentage = 0.025
 click_distance = distance_percentage * (pos_handler.screen_size[0]**2+pos_handler.screen_size[1]**2)**0.5
-offset_percentage=0.2
+offset_percentage=0.4
 print(f"Click distance: {click_distance}")
 
 def main():
@@ -38,7 +38,7 @@ def main():
 
             pos1=pos_handler.position_offset(pos1,offset_percentage)
             pos2=pos_handler.position_offset(pos2,offset_percentage)
-            clicker.move_mouse((pos2[0]+pos1[0])/2,(pos2[1]+pos1[1])/2)
+            clicker.move_mouse(pos1[0],pos1[1])
 
             if new_distance<40 and last_distance>=40:
                 clicker.click()
