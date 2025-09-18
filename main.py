@@ -8,7 +8,7 @@ clicker = clicker.Clicker(cooldown=1.0)
 pos_handler = ph.PositionHandler()
 distance_percentage = 0.0255
 click_distance = distance_percentage * (pos_handler.screen_size[0]**2+pos_handler.screen_size[1]**2)**0.5
-offset_percentage=0.1
+offset_percentage=0.5
 
 
 def main():
