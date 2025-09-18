@@ -14,3 +14,11 @@ class Clicker:
             print("Clicked!")
         else:
             print("Click on cooldown.")
+
+    
+    def move_mouse(self, x, y):
+        pag.moveTo(x, y)
+
+    def click_and_move(self, x, y):
+        self.click()
+        self.move_mouse(x, y)
