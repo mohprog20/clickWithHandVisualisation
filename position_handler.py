@@ -27,6 +27,7 @@ class PositionHandler:
     def get_refernce_position(self,position):
         return (position[0] * self.screen_size[0] / self.cam_width,
                 position[1] * self.screen_size[1] / self.cam_height)
-
-pos=PositionHandler()
-print(pos.get_refernce_position([100,100]))
+    def get_distance(self,point1,point2):
+        return ((point2[0]-point1[0])**2+(point2[1]-point1[1])**2)**0.5
+#pos=PositionHandler()
+#print(pos.get_refernce_position([100,100]))

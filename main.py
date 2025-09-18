@@ -14,14 +14,12 @@ def main():
     ptime=0
     ctime=0
     cap=cv2.VideoCapture(0)
-    detector=htb.handDetector()
+    detector=htb.handDetector(mode=False,maxHands=1,detectionCon=0.5,trackCon=0.5)
     while True:
         success,img=cap.read()
         img=cv2.flip(img,1)
         img=detector.findHands(img)
         lmList=detector.findPosition(img)
-        if len(lmList)!=0:
-            print(lmList[4])
         ctime=time.time()
         fps=1/(ctime-ptime)
         ptime=ctime
@@ -31,7 +29,8 @@ def main():
         if len(lmList)!=0 and True:
             pos1=pos_handler.get_refernce_position(lmList[4][1:3])
             pos2=pos_handler.get_refernce_position(lmList[8][1:3])
+            print(int(pos_handler.get_distance(pos1,pos2)))
             clicker.move_mouse((pos2[0]+pos1[0])/2,(pos2[1]+pos1[1])/2)
-
+        
 if __name__ == "__main__":
     main()
