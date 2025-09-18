@@ -6,10 +6,10 @@ import position_handler as ph
 clicker = clicker.Clicker(cooldown=1.0)
 
 pos_handler = ph.PositionHandler()
-distance_percentage = 0.0255
+distance_percentage = 0.025
 click_distance = distance_percentage * (pos_handler.screen_size[0]**2+pos_handler.screen_size[1]**2)**0.5
-offset_percentage=0.5
-
+offset_percentage=0.2
+print(f"Click distance: {click_distance}")
 
 def main():
     last_distance = 0
@@ -33,9 +33,11 @@ def main():
         if len(lmList)!=0 and True:
             pos1=pos_handler.get_refernce_position(lmList[4][1:3])
             pos2=pos_handler.get_refernce_position(lmList[8][1:3])
+
+            new_distance =(int(pos_handler.get_distance(pos1,pos2)))
+
             pos1=pos_handler.position_offset(pos1,offset_percentage)
             pos2=pos_handler.position_offset(pos2,offset_percentage)
-            new_distance =(int(pos_handler.get_distance(pos1,pos2)))
             clicker.move_mouse((pos2[0]+pos1[0])/2,(pos2[1]+pos1[1])/2)
 
             if new_distance<40 and last_distance>=40:

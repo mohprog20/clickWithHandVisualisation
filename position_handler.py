@@ -31,8 +31,8 @@ class PositionHandler:
         return ((point2[0]-point1[0])**2+(point2[1]-point1[1])**2)**0.5
 
     def position_offset(self,position,offset_percentage=0.1):
-        offset_x=offset_percentage*self.screen_size[0]
-        offset_y=offset_percentage*self.screen_size[1]
+        offset_x=(position[0]-self.screen_size[0]/2)*offset_percentage
+        offset_y=(position[1]-self.screen_size[1]/2)*offset_percentage
         return (position[0]+offset_x,position[1]+offset_y)
-#pos=PositionHandler()
+#pos=PositionHandler() 
 #print(pos.get_refernce_position([100,100]))
