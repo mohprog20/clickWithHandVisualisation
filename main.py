@@ -6,12 +6,16 @@ import position_handler as ph
 clicker = clicker.Clicker(cooldown=0.5)
 
 pos_handler = ph.PositionHandler()
-distance_percentage = 0.025
+distance_percentage = 0.03
 click_distance = distance_percentage * (pos_handler.screen_size[0]**2+pos_handler.screen_size[1]**2)**0.5
-offset_percentage=0.4
+offset_percentage=2
 print(f"Click distance: {click_distance}")
 
+
+
 def main():
+    lastx,lasty=0,0
+    smoothening=5
     last_distance = 0
     new_distance = 0
 
@@ -30,9 +34,14 @@ def main():
         cv2.putText(img,f"FPS: {int(fps)}",(10,70),cv2.FONT_HERSHEY_SIMPLEX,2,(255,0,255),2)
         cv2.imshow("Image",img)
         cv2.waitKey(1)
-        if len(lmList)!=0 and True:
+        if len(lmList)!=0:
             pos1=pos_handler.get_refernce_position(lmList[4][1:3])
             pos2=pos_handler.get_refernce_position(lmList[8][1:3])
+
+            #value smoothing of thumb position
+            lastx=lastx+(pos1[0]-lastx)/smoothening
+            lasty=lasty+(pos1[1]-lasty)/smoothening
+            pos1=(lastx,lasty)
 
             new_distance =(int(pos_handler.get_distance(pos1,pos2)))
 
