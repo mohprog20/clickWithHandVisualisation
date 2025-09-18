@@ -20,6 +20,13 @@ class PositionHandler:
 
 
     def handle_positions(self,finger1=[0,0],finger2=[0,0]):
-        print(self.screen_size[0])
+        finger1=self.get_refernce_position(finger1)
+        finger2=self.get_refernce_position(finger2)
         pass
+    
+    def get_refernce_position(self,position):
+        return (position[0] * self.screen_size[0] / self.cam_width,
+                position[1] * self.screen_size[1] / self.cam_height)
+
 pos=PositionHandler()
+print(pos.get_refernce_position([100,100]))
